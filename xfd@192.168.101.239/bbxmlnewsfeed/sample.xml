@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<alphasign>
+  <text label="A">
+    <callString label="1"/>
+    <callString label="2"/>
+    <callString label="3"/>
+    <callString label="4"/>
+    <callString label="5"/>
+    <callString label="6"/>
+    <callString label="7"/>
+    <callString label="8"/>
+    <callString label="9"/>
+    <callString label="10"/>
+    <callString label="11"/>
+    <callString label="12"/>
+    <callString label="13"/>
+    <callString label="14"/>
+  </text>
+</alphasign>

@@ -1,0 +1,18 @@
+#!/bin/bash
+if [ $# -ne 1 ]
+then
+echo "Usage: `basename $0` animated_File.gif " ; exit 1
+fi
+# get the frame count
+numFrames=$(identify "$1" | wc -l)
+# Walk each frame
+num=0
+new=1
+while [ $num -lt $numFrames ]
+do
+# Extract and convert each frame
+convert $1[$num] frame$new.gif
+# Update frame to extract and pathname
+num=$(($num+1));
+new=$(($new+1));
+done

@@ -1,0 +1,167 @@
+<alphasign>
+
+  <memoryConfig>
+  <!-- cctray feed -->
+    <textConfig label="P" size="512" start="always" stop="never"/>
+    <!-- BBC NEWS -->
+    <textConfig label="B" size="512" start="12:00" stop="13:00"/>
+    <textConfig label="C" size="512" start="12:00" stop="13:00"/>
+    <!-- Time -->
+    <textConfig label="T" size="64" start="always" stop="never"/>
+    <!-- Weather -->
+    <textConfig label="W" size="64" start="12:00" stop="13:00"/>
+    
+    <!-- images -->
+    <dotsConfig label="A" height="7" width="18" colors="1"/>
+    <dotsConfig label="B" height="7" width="18" colors="1"/>
+    <dotsConfig label="C" height="14" width="14" colors="3"/>
+    <dotsConfig label="P" height="7" width="34" colors="3"/>
+    <dotsConfig label="D" height="16" width="16" colors="3"/>
+    <dotsConfig label="E" height="9" width="26" colors="3"/>
+    <dotsConfig label="R" height="8" width="7" colors="1"/>
+    <dotsConfig label="G" height="8" width="7" colors="1"/>
+    <dotsConfig label="Y" height="8" width="7" colors="1"/>
+     
+    <stringConfig label="P" size="512"/>
+    <stringConfig label="B" size="512"/>
+    <stringConfig label="C" size="512"/>
+    <stringConfig label="W" size="512"/>
+  </memoryConfig>
+
+<timeFormat format="24-hour-blinking-colon"/>
+
+<sequence labels="PBPCPTPW" mode="useTimeSchedule"/>
+<!-- <sequence labels="P"/> -->
+
+  <text label="P"><callString label="P"/><mode display="starburst"/></text>
+  <text label="B"><green/><fullHeightFancy/><mode display="rotate"/><speed5/><callString label="B"/><mode display="starburst"/></text>
+  <text label="C"><green/><fullHeightFancy/><mode display="rotate"/><speed5/><callString label="C"/><mode display="starburst"/></text>
+  <text label="T"><orange/><fullHeightFancy/><mode display="hold"/><time/><mode display="starburst"/></text>
+  <text label="W"><green/><fullHeightFancy/><mode display="rotate"/><speed5/><callString label="W"/><callDots label="A"/><mode display="starburst"/></text>
+  
+
+
+<dots label="A">
+<!-- small Space Invaders (1) 7x18 monochrome file -->
+<row>000002000002000000</row>
+<row>000000200020000000</row>
+<row>000002222222000000</row>
+<row>000022022202200000</row>
+<row>000222222222220000</row>
+<row>000202000002020000</row>
+<row>000000200020000000</row>
+</dots>
+
+<dots label="B">
+<!-- small Space Invaders (2) 7x18 monochrome file -->
+<row>000000022000000000</row>
+<row>000002222220000000</row>
+<row>000022022022000000</row>
+<row>000022222222000000</row>
+<row>000000200200000000</row>
+<row>000002022020000000</row>
+<row>000020200202000000</row>
+</dots>
+  
+<dots label="C">
+<!-- cherry 14x14 -->
+<row>00000000000000</row>
+<row>00000000000022</row>
+<row>00000000002222</row>
+<row>00000000220200</row>
+<row>00000002000200</row>
+<row>00011120002000</row>
+<row>00111211020000</row>
+<row>00111110121100</row>
+<row>00131101121110</row>
+<row>00113101111110</row>
+<row>00011101311110</row>
+<row>00000001131110</row>
+<row>00000000111100</row>
+<row>00000000000000</row>
+</dots>
+
+<dots label="E">
+<!-- 9x26 car 3 colour -->
+<row>00000000000111111100000000</row>
+<row>00000000001000000111100000</row>
+<row>00000000110000000011111000</row>
+<row>00011111110000000111111100</row>
+<row>00100001111111111110011100</row>
+<row>03001101111111111101101110</row>
+<row>01010010111111111010010110</row>
+<row>01010010111111111010010110</row>
+<row>00001100000000000001100000</row>
+</dots>
+
+<dots label="P">
+<!-- pirate ship 7x34 -->
+<row>0000000000600000600000000000000000</row>
+<row>0000000008880888888808888000000000</row>
+<row>0000000008880888888800088888000000</row>
+<row>0000000008880888888800008888886600</row>
+<row>0006666660600000600666666666660000</row>
+<row>0000066666666666666666666666600000</row>
+<row>0000000666666666666666666660000000</row>
+</dots>
+
+<dots label="D">
+<!-- rubber duck 16x16 -->
+<row>0000000000000000</row>
+<row>0000033000000000</row>
+<row>0003333300000000</row>
+<row>0013033330000000</row>
+<row>0113333330000000</row>
+<row>0013333330000000</row>
+<row>0003333300003000</row>
+<row>0003333000003300</row>
+<row>0033333300333330</row>
+<row>0333333333333330</row>
+<row>0333333333333330</row>
+<row>0333333333333330</row>
+<row>0333333333333330</row>
+<row>0033333333333300</row>
+<row>0003333333330000</row>
+<row>0000000000000000</row>
+</dots>
+
+
+<dots label="R">
+<!-- red square 8x7 -->
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>0000000</row>
+</dots>
+
+
+<dots label="Y">
+<!-- Yellow square 8x7 -->
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>0000000</row>
+</dots>
+
+<dots label="G">
+<!-- Green square 8x7 -->
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>0000000</row>
+</dots>
+
+
+</alphasign>

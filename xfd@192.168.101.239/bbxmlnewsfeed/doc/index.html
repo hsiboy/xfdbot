@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>BBXML: RSS Newsfeed Reader</title>
+    <link rel="stylesheet" href="bbxml.css"/>
+  </head>
+
+  <body>
+    <h1>RSS Newsfeed Reader</h1>
+
+    <p>This app reads RSS files and converts the headlines into
+    messages that display on a Betabrite LED sign.</p>
+
+    <h2>Requirements</h2>
+
+    <ul>
+      <li><a href="../../bbxml/doc/index.html">BBXML</a></li>
+      <li>xsltproc</li>
+      <li>Perl, with modules: XML::LibXML, XML::LibXSLT, LWP::UserAgent</li>
+    </ul>
+
+    <h2>Setup</h2>
+
+    <p>First, you need to allocate the TEXT files on the sign to
+    accommodate the headlines that you want to display. See the <a
+    href="../../bbxml/doc/index.html#memoryConfig_textConfig">User's
+    Guide</a> for details.  Configure one TEXT file label for each RSS
+    file that you want to display. Example:</p>
+
+
+<pre class="codequote">
+&lt;alphasign&gt;
+  &lt;memoryConfig&gt;
+    &lt;textConfig label="a" size="1024"/&gt;
+  &lt;/memoryConfig&gt;
+&lt;/alphasign&gt;
+</pre>
+    
+
+    <h2>Running It</h2>
+    
+    <p>The script is <span class="filename"><a
+    href="../bbnewsfetch">bbnewsfetch</a></span>.  It takes two
+    arguments:
+
+      <ol>
+	<li>The URL of the RSS file.</li>
+	<li>The label of the TEXT file to use.</li>
+      </ol>
+
+      Example:
+    </p>
+
+    <code class="cmd">./bbnewsfetch http://slashdot.org/index.rss a</code>
+
+    <p>In addition to the two required arguments, you can supply the
+    color to use on the sign.  The valid color names are documented in
+    the BBXML <a href="../../bbxml/doc/index.html#colors">User's
+    Guide</a>.</p>
+
+    <code class="cmd">./bbnewsfetch --color green http://slashdot.org/index.rss a</code>
+
+    <p>The output is the BBXML document.</p>
+
+<pre class="codequote">
+&lt;alphasign&gt;
+  &lt;text label="a"&gt;
+    &lt;mode display="compressedRotate"/&gt;&lt;green/&gt;
+    &lt;msg&gt;Slashdot: &lt;/msg&gt;
+    &lt;msg&gt;What Ever Happened to Virtual Reality? - - - &lt;/msg&gt;
+    &lt;msg&gt;U.S. Rejects Canadian Rejection of DMCA - - - &lt;/msg&gt;
+    &lt;msg&gt;The Chimera Dilemma Manifested in Sheep - - - &lt;/msg&gt;
+    &lt;msg&gt;Does launchd Beat cron? - - - &lt;/msg&gt;
+    &lt;msg&gt;Pi: Less Random Than We Thought - - - &lt;/msg&gt;
+    &lt;msg&gt;Firefox 1.1 Plans Native SVG Support - - - &lt;/msg&gt;
+    &lt;msg&gt;Trek Producers Will Provide World A Break - - - &lt;/msg&gt;
+    &lt;msg&gt;Serenity Screenings Sell Out - - - &lt;/msg&gt;
+    &lt;msg&gt;Copy-and-Paste Reveals Classified U.S. Documents - - - &lt;/msg&gt;
+    &lt;msg&gt;A Look at Silicon Valley Cafeterias&lt;/msg&gt;
+  &lt;/text&gt;
+&lt;/alphasign&gt;
+</pre>
+
+      <p>Send the output to the
+	sign with <span class="filename">bbxml</span>:</p>
+
+    <code class="cmd">./bbnewsfetch --color green http://slashdot.org/index.rss a | bbxml</code>
+
+
+    <h2>How It Works</h2>
+
+    <p>The <span class="filename"><a
+    href="../bbnewsfetch">bbnewsfetch</a></span> script downloads the
+    RSS file that you specify and then processes it with XSLT using
+    the <a href="../rss_alphasign.xsl">rss_alphasign.xsl</a>
+    stylesheet.  The output of this is a BBXML document, which you can
+    then send to the Betabrite sign using the <span
+    class="filename">bbxml</span> script.  The following manual steps
+    accomplish the same thing.</p>
+
+    <code class="cmd">wget http://slashdot.org/index.rss</code><br/>
+    <code class="cmd">xsltproc --stringparam text-label a rss_alphasign.xsl index.rss &gt; slashdot.a.xml</code><br/>
+    <code class="cmd">bbxml slashdot.a.xml</code><br/>
+
+
+
+    <hr>
+      <a href="../../">[up]</a>
+      <address><a href="mailto:dfranklin@pobox.com">Darin Franklin</a></address>
+  </body>
+</html>

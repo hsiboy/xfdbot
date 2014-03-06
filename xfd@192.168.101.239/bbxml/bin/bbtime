@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+
+# sets system time and date on sign.
+
+use strict;
+use Net::NTP;
+
+# cant get to the internet - so we use the routers time
+my %response = get_ntp_response('192.168.138.254');
+
+my $label = "0";
+my $typeCode = "Z";
+my $signAddress = "00";
+
+
+my ($second, $minute, $hour, $dayOfMonth, $month, $yearOffset, $dayOfWeek, $dayOfYear, $daylightSavings) = localtime($response{'Transmit Timestamp'});
+
+my $year = substr(1900 + $yearOffset, -2);
+$month++;
+
+my $msg=qq(<alphasign typeCode="$typeCode" signAddress="$signAddress"><timeOfDay hour="$hour" minute="$minute"/><calendarDate month="$month" day="$dayOfMonth" year="$year"/><dayOfWeek day="$dayOfWeek"/></alphasign>);
+
+system(qq(echo '$msg' | bbxml2));

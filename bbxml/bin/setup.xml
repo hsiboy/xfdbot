@@ -1,0 +1,194 @@
+<alphasign>
+
+  <memoryConfig>
+  <!-- place to store cctray feed -->
+    <textConfig label="P" size="512" start="always" stop="never"/>
+    <!-- BBC NEWS -->
+    <textConfig label="B" size="512" start="12:00" stop="13:00"/>
+    <textConfig label="C" size="512" start="12:00" stop="13:00"/>
+    <!-- Time -->
+    <textConfig label="T" size="64" start="always" stop="never"/>
+    <!-- Weather -->
+    <textConfig label="W" size="64" start="12:00" stop="13:00"/>
+    <!-- Temperature -->
+    <textConfig label="F" size="64" start="always" stop="never"/>
+    
+    <!-- images -->
+    <dotsConfig label="A" height="7" width="18" colors="1"/>
+    <dotsConfig label="B" height="7" width="18" colors="1"/>
+    <dotsConfig label="C" height="14" width="14" colors="3"/>
+    <dotsConfig label="P" height="7" width="34" colors="3"/>
+    <dotsConfig label="D" height="16" width="16" colors="3"/>
+    <dotsConfig label="E" height="9" width="26" colors="3"/>
+    <dotsConfig label="R" height="8" width="7" colors="1"/>
+    <dotsConfig label="G" height="8" width="7" colors="1"/>
+    <dotsConfig label="Y" height="8" width="7" colors="1"/>
+    <dotsConfig label="T" height="16" width="74" colors="3"/>
+     
+    <stringConfig label="P" size="512"/>
+    <stringConfig label="B" size="512"/>
+    <stringConfig label="C" size="512"/>
+    <stringConfig label="W" size="512"/>
+  </memoryConfig>
+
+<!-- set a timeout message, to be displayed if sign loses connection to PC -->
+<!-- timeout is 1/10 seconds. -->
+
+<timeoutMessage timeout="3000" message="No PC Connection!"/>
+
+<timeFormat format="24-hour-blinking-colon"/>
+
+<sequence labels="PBPCPTPW" mode="useTimeSchedule"/> 
+<!-- <sequence labels="T"/> -->
+
+  <text label="P"><callString label="P"/><callDots label="T"/></text>
+  <text label="B"><green/><fullHeightFancy/><mode display="rotate"/><speed5/><callString label="B"/></text>
+  <text label="C"><green/><fullHeightFancy/><mode display="rotate"/><speed5/><callString label="C"/></text>
+  <text label="T"><green/><mode display="hold"/><fullHeightFancy/><noHold/><time/></text>
+  <text label="W"><green/><fullHeightFancy/><mode display="rotate"/><speed5/><callString label="W"/><callDots label="A"/></text>
+  
+
+
+<dots label="A">
+<!-- small Space Invaders (1) 7x18 monochrome file -->
+<row>000002000002000000</row>
+<row>000000200020000000</row>
+<row>000002222222000000</row>
+<row>000022022202200000</row>
+<row>000222222222220000</row>
+<row>000202000002020000</row>
+<row>000000200020000000</row>
+</dots>
+
+<dots label="B">
+<!-- small Space Invaders (2) 7x18 monochrome file -->
+<row>000000022000000000</row>
+<row>000002222220000000</row>
+<row>000022022022000000</row>
+<row>000022222222000000</row>
+<row>000000200200000000</row>
+<row>000002022020000000</row>
+<row>000020200202000000</row>
+</dots>
+  
+<dots label="C">
+<!-- cherry 14x14 3 colour -->
+<row>00000000000000</row>
+<row>00000000000022</row>
+<row>00000000002222</row>
+<row>00000000220200</row>
+<row>00000002000200</row>
+<row>00011120002000</row>
+<row>00111211020000</row>
+<row>00111110121100</row>
+<row>00131101121110</row>
+<row>00113101111110</row>
+<row>00011101311110</row>
+<row>00000001131110</row>
+<row>00000000111100</row>
+<row>00000000000000</row>
+</dots>
+
+<dots label="E">
+<!-- 9x26 car 3 colour -->
+<row>00000000000111111100000000</row>
+<row>00000000001000000111100000</row>
+<row>00000000110000000011111000</row>
+<row>00011111110000000111111100</row>
+<row>00100001111111111110011100</row>
+<row>03001101111111111101101110</row>
+<row>01010010111111111010010110</row>
+<row>01010010111111111010010110</row>
+<row>00001100000000000001100000</row>
+</dots>
+
+<dots label="P">
+<!-- pirate ship 7x34 -->
+<row>0000000000600000600000000000000000</row>
+<row>0000000008880888888808888000000000</row>
+<row>0000000008880888888800088888000000</row>
+<row>0000000008880888888800008888886600</row>
+<row>0006666660600000600666666666660000</row>
+<row>0000066666666666666666666666600000</row>
+<row>0000000666666666666666666660000000</row>
+</dots>
+
+<dots label="D">
+<!-- rubber duck 16x16 2 colour -->
+<row>0000000000000000</row>
+<row>0000033000000000</row>
+<row>0003333300000000</row>
+<row>0013033330000000</row>
+<row>0113333330000000</row>
+<row>0013333330000000</row>
+<row>0003333300003000</row>
+<row>0003333000003300</row>
+<row>0033333300333330</row>
+<row>0333333333333330</row>
+<row>0333333333333330</row>
+<row>0333333333333330</row>
+<row>0333333333333330</row>
+<row>0033333333333300</row>
+<row>0003333333330000</row>
+<row>0000000000000000</row>
+</dots>
+
+
+<dots label="R">
+<!-- red square 8x7 - failed -->
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>1111111</row>
+<row>0000000</row>
+</dots>
+
+<dots label="Y">
+<!-- Yellow square 8x7 - building -->
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>3333333</row>
+<row>0000000</row>
+</dots>
+
+<dots label="G">
+<!-- Green square 8x7 - passed -->
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>2222222</row>
+<row>0000000</row>
+</dots>
+
+<dots label="T">
+<!-- Thumbs Up Dude 16x73 colour -->
+<row>2222222222222222222222222222222222222222222222222222222222222222222222222</row>
+<row>2222222222222222222222222222220202002020200202222222222222222222222222222</row>
+<row>2222222222222222222222222222222030330303033002222222222222222222222222222</row>
+<row>2222222222222222222222222222220333333333033300222222222222222222222222222</row>
+<row>2222222222222222222222222222200333333333333302222222222222222222222222222</row>
+<row>2222222222222220222222222222220330003333303330222222222220022222222222222</row>
+<row>2222222222222203022222222222220333333333330330022222222203022222222222222</row>
+<row>2222222222200203302222222222200333333333333333022222222203000002222222222</row>
+<row>2222222222033003300000222222200000003330000303022220000033033302222222222</row>
+<row>2222222222033300300111000222203330000000000333000001111033003300222222222</row>
+<row>2222222200333033301111111000000330000330000300300111111033300333022222222</row>
+<row>2222222203330333301111111101110330000330000303301111111103333033022222222</row>
+<row>2222222220330333011111111101110333003333033303011111111113333000022222222</row>
+<row>2222222222003330111111111101110333333330333303011111111110033300222222222</row>
+<row>2222222222033000001111111101111033330003333033011111111000200330222222222</row>
+<row>2222222222000222220011111110111103333333333033011111100022222002222222222</row>
+</dots>
+
+
+</alphasign>

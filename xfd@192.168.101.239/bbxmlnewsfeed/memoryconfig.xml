@@ -1,0 +1,9 @@
+<alphasign>
+  <memoryConfig>
+    <textConfig label="P" size="768" start="always" stop="never"/>
+    <textConfig label="B" size="768" start="always" stop="never"/>
+    <textConfig label="C" size="512" start="always" stop="never"/>
+    <textConfig label="T" size="512" start="always" stop="never"/>
+    <dotsConfig label="C" height="14" width="14" colors="3"/>
+  </memoryConfig>
+</alphasign>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>BBXML: Time and Temperature</title>
+    <link rel="stylesheet" href="bbxml.css"/>
+  </head>
+
+  <body>
+    <h1>Betabrite Time and Temperature</h1>
+
+    <p>This script gets weather info from NOAA and stores the data in
+    STRING files on the Betabrite sign.  By default, it only stores
+    the temperature, but you can also get other weather data.</p>
+
+    <h2>Requirements</h2>
+
+    <ul>
+      <li><a href="../../bbxml/doc/index.html">BBXML</a></li>
+      <li>Perl, with module: Geo::METAR</li>
+    </ul>
+    
+
+    <h2>Setup</h2>
+
+    <p>This script writes to a STRING file with the label, "<span
+    class="attrval">t</span>".  In order to display the temperature,
+    you will also need to create a TEXT file.  See the <a
+    href="../../bbxml/doc/index.html#memoryConfig_textConfig">User's
+    Guide</a> for details.  For example, add this
+    <code>textConfig</code> and <code>stringConfig</code> to your
+    <code>memoryConfig</code> document.</p>
+
+
+<pre class="codequote">
+&lt;alphasign&gt;
+  &lt;memoryConfig&gt;
+    &lt;textConfig label="T" size="25"/&gt;
+    &lt;stringConfig label="t" size="6"/&gt;
+  &lt;/memoryConfig&gt;
+&lt;/alphasign&gt;
+</pre>
+
+    <p>Then send this <code>text</code> message to the sign to display
+    the time and temperature.</p>
+
+<pre class="codequote">
+&lt;alphasign&gt;
+  &lt;text label="T"&gt;
+    &lt;mode display="hold"/&gt;
+    &lt;orange/&gt;&lt;callString label="t"/&gt;
+    &lt;extendedChar offset="49"/&gt;F   &lt;dimred/&gt;&lt;time/&gt;
+  &lt;/text&gt;
+&lt;/alphasign&gt;
+</pre>
+    
+    <p>After that, you need to run the <span
+    class="filename">bbweather</span> script to set the value of the
+    "<span class="attrvalue">t</span>" STRING file in the sign.</p>
+
+    <h2>Running It</h2>
+    
+    <p>Run the <span class="filename"><a
+    href="../bbweather">bbweather</a></span> script to get the
+    temperature from NOAA.  The script takes one argument: the ICAO
+    Location Indicator.  You can search for your local ICAO code at <a
+    href="http://www.nws.noaa.gov/tg/siteloc.shtml">the NOAA web
+    site</a>.  Example:
+    </p>
+
+    <code class="cmd">./bbweather KFSD</code>
+
+    <p>The output is an XML document.</p>
+
+<pre class="codequote">
+&lt;alphasign&gt;
+  &lt;string label="t"&gt;41&lt;/string&gt;
+&lt;/alphasign&gt;
+</pre>
+
+    <p>Pass that to <span
+    class="filename">bbxml</span> to send it to the Betabrite sign.</p>
+
+    <code class="cmd">./bbweather KFSD | bbxml</code>
+
+    <h2>Suggestions</h2>
+
+    <p>You can edit the <span class="filename">bbweather</span> script
+    to read other fields, such as wind speed and direction, dew point,
+    etc.  First, run it with the <code>--dump</code> option to see
+    what fields are available.  There are some comments in the script
+    to show you how to add the new fields.</p>
+
+    <p>To make the updates automatic, create a <span
+    class="filename">cron</span> job to run the script
+    periodically.</p>
+
+    <hr>
+      <a href="../../">[up]</a>
+    <address><a href="mailto:dfranklin@pobox.com">Darin Franklin</a></address>
+  </body>
+</html>

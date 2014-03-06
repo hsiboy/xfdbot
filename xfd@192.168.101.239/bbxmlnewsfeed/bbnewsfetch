@@ -1,0 +1,60 @@
+#!/usr/bin/perl
+
+# Downloads RSS files and transforms them into BBXML format for
+# display on a Betabrite LED sign.
+#
+# Author: Darin Franklin <dfranklin@pobox.com>
+# http://pobox.com/~dfranklin/bbxml/
+
+use strict;
+use LWP::UserAgent;
+use FileHandle;
+use XML::LibXML;
+use XML::LibXSLT;
+
+my $proxy = "http://proxy.tradermedia.co.uk:8080/";
+my $xslfn = "/opt/bbxmlnewsfeed/rss_alphasign.xsl";
+my $color = "green";
+my $max = 3;
+
+&main(@ARGV);
+
+sub main {
+    print fetchnews(@_);
+}
+
+sub fetchnews {
+    my ($url, $label) = @_;
+    die &usage if ($label eq '');
+    my $parser = XML::LibXML->new();
+
+    my $xml = $parser->parse_string(readXML($url));
+    my $xsldoc = $parser->parse_file($xslfn);
+
+    my $xslt = XML::LibXSLT->new();
+    my $xsl = $xslt->parse_stylesheet($xsldoc);
+
+    my $result = $xsl->transform($xml,
+				 'text-label' => "'$label'", 
+				 'color' => "'$color'",
+				 'maxitems' => "'$max'",
+				 );
+    return $xsl->output_string($result);
+}
+
+sub readXML {
+    my ($url) = @_;
+    my $ua = LWP::UserAgent->new();
+    $ua->proxy('http', $proxy);
+    my $response = $ua->get($url);
+    die $response->status_line unless $response->is_success;
+    return $response->content;
+}
+
+
+sub usage {
+    return<<EOF
+Usage: bbnewsfetch URL sign_file_label
+EOF
+;
+}

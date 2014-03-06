@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+
+# convert Alpha Sign "2-byte" protocol to "1-byte" protocol
+print "\0\0\0\0\0";
+while (<>) {
+      s/]//eg;
+    #s/([0-9A-Fa-f]{1})/chr(oct("0X$1"))/eg;
+    print;
+}

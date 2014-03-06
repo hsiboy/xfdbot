@@ -1,0 +1,93 @@
+#!/usr/bin/perl
+
+# Downloads weather information and writes it as BBXML format for
+# display on a Betabrite LED sign.
+#
+# Author: Darin Franklin <dfranklin@pobox.com>
+# http://pobox.com/~dfranklin/bbxml/
+
+use strict;
+use Geo::METAR;
+use LWP::UserAgent;
+use FileHandle;
+
+my $time_label = "s";
+my $temp_label = "t";
+my $dump = 0;
+
+use Getopt::Long;
+GetOptions(
+	   "temp_label=s" => \$temp_label,
+	   "time_label=s" => \$time_label,
+	   "dump" => \$dump,
+	   );
+
+my $code = shift @ARGV || "KFSD";
+
+# Edit this %fields hash to add additional fields to the output.  Run
+# bbweather --dump to see what fields are available from the
+# Geo::METAR module.
+
+# sign_label => field_name
+my %fields = (
+    t => 'TEMP_C'
+);
+
+&main($code);
+
+sub main {
+    my ($code) = @_;
+
+    my $m = get_weather_noaa_metar($code);
+    print_alphasign_xml($m);
+}
+
+sub print_alphasign_xml {
+    my $m = shift;
+    # Remove leading zeros:
+    $m->{TEMP_C} =~ s/^0*//;
+    
+print qq(<alphasign>\n);
+    foreach my $label (keys %fields) {
+	print qq(  <string label="$label">$m->{$fields{$label}}</string>\n);
+    }
+    print qq(</alphasign>\n);
+}
+
+sub convert_utc_time {
+    my ($utc, $offset) = @_;
+
+    my ($hh, $mm) = $utc =~ /(\d+):(\d+)/;
+    $hh = ($hh + $offset + 24) % 24;
+    return "$hh:$mm";
+}
+
+sub get_weather_noaa_metar {
+    my ($code) = @_;
+
+    my $metar = get_metar_web($code);
+    my $m = Geo::METAR->new();
+    $m->metar($metar);
+    $m->dump() if $dump;
+    return $m;
+}
+
+# fetch web page from NOAA and parse the METAR line from it
+sub get_metar_web {
+    my ($code) = @_;
+
+    my $url = "http://weather.noaa.gov/cgi-bin/mgetmetar.pl?cccc=$code";
+    my $ua = LWP::UserAgent->new(env_proxy => 1);
+    my $rep = $ua->get($url);
+    if (not $rep->is_success) {
+	print $rep->status_line;
+	return "";
+    }
+    #print $rep->headers_as_string;
+    #print $rep->content;
+    foreach ($rep->content) {
+	return $& if (/$code [^<]+/);
+    }
+    return "";
+}
+

@@ -1,0 +1,8 @@
+<alphasign>
+  <memoryConfig>
+  <textConfig label="A" size="14"/>
+  <textConfig label="B" size="14"/>
+  <dotsConfig label="A" height="16" width="33" colors="8"/>
+  <dotsConfig label="B" height="16" width="33" colors="8"/>
+  </memoryConfig>
+</alphasign>

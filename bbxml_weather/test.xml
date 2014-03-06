@@ -1,0 +1,10 @@
+<alphasign>
+  <text label="A">
+      <mode display="rotate"/>
+      <msg>Date: <date format="DD/MM/YY"/><CR/></msg>
+      <msg>Time: <time/><CR/></msg>
+      <msg>Temp: <callString label="t"/><extendedChar offset="49"/>C<CR/></msg>
+  </text>
+  <sequence labels="AB"/>
+</alphasign>
+

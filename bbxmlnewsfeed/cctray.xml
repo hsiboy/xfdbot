@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<alphasign>
+<string label="P">
+<msg><mode position="top" display="hold"/><standard7/><yellow/>autotrader-jmeter-performance<mode position="bottom" display="rotate"/><fancy7/>Build: 1626<red/> Failed! <green/><fancy7/>The Build is currently Sleeping</msg>
+<CR/>
+<msg><mode position="top" display="hold"/><standard7/><yellow/>autotrader-branch<mode position="bottom" display="rotate"/><green/><fancy7/>Build: 4.0.16042.16149 was successfully built. <green/><fancy7/>The Build is currently Sleeping</msg>
+<CR/>
+<msg><mode position="top" display="hold"/><standard7/><yellow/>autotrader-trunk<mode position="bottom" display="rotate"/><green/><fancy7/>Build: 4.0.16430 was successfully built. <green/><fancy7/>The Build is currently Sleeping</msg>
+<CR/>
+</string>
+</alphasign>

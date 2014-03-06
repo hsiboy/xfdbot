@@ -1,0 +1,188 @@
+Started: Thu May 28 17:32:30 2009
+I dont know what state the build is in, cruise returned Success for the last build status?
+Currently 
+Build 4593 was sucessfully built @ 16:44:12
+The Build is Currently Building
+Build 4595 was sucessfully built @ 16:50:36the Build is Currently Sleeping
+BORK BORK BORK - Build  4596 started building @ 17:36:32The Build is Currently Sleeping
+Build 4597 was sucessfully built @ 17:48:47the Build is Currently Sleeping
+Started: Tue Jun  2 12:10:40 2009
+$VAR1 = {
+          'Project' => {
+                       'Sauron :: Stub-Twist-Tests :: deploy-rpm-and-run-twist-scenarios-run2' => {
+                                                                                                  'lastBuildLabel' => '4680',
+                                                                                                  'lastBuildStatus' => 'Success',
+                                                                                                  'lastBuildTime' => '2009-06-02T10:40:45',
+                                                                                                  'activity' => 'Sleeping',
+                                                                                                  'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/Stub-Twist-Tests/1/deploy-rpm-and-run-twist-scenarios-run2'
+                                                                                                },
+                       'FBI :: Build :: package' => {
+                                                    'lastBuildLabel' => '70',
+                                                    'lastBuildStatus' => 'Success',
+                                                    'lastBuildTime' => '2009-06-01T13:47:12',
+                                                    'activity' => 'Sleeping',
+                                                    'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/FBI/70/Build/1/package'
+                                                  },
+                       'FBI :: Build' => {
+                                         'lastBuildLabel' => '70',
+                                         'lastBuildStatus' => 'Success',
+                                         'lastBuildTime' => '2009-06-01T13:47:18',
+                                         'activity' => 'Sleeping',
+                                         'webUrl' => 'http://localhost:8153/cruise/tab/stage/detail/FBI/70/Build/1'
+                                       },
+                       'URS :: build :: docs' => {
+                                                 'lastBuildLabel' => '20',
+                                                 'lastBuildStatus' => 'Success',
+                                                 'lastBuildTime' => '2009-05-29T13:27:42',
+                                                 'activity' => 'Sleeping',
+                                                 'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/URS/20/build/1/docs'
+                                               },
+                       'Sauron :: build :: validation' => {
+                                                          'lastBuildLabel' => '4680',
+                                                          'lastBuildStatus' => 'Success',
+                                                          'lastBuildTime' => '2009-06-02T10:33:28',
+                                                          'activity' => 'Sleeping',
+                                                          'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/build/1/validation'
+                                                        },
+                       'Sauron :: promote-to-dev' => {
+                                                     'lastBuildLabel' => '4680',
+                                                     'lastBuildStatus' => 'Success',
+                                                     'lastBuildTime' => '2009-06-02T10:45:40',
+                                                     'activity' => 'Sleeping',
+                                                     'webUrl' => 'http://localhost:8153/cruise/tab/stage/detail/Sauron/4680/promote-to-dev/1'
+                                                   },
+                       'Fatwire :: test' => {
+                                            'lastBuildLabel' => '19 :: 11',
+                                            'lastBuildStatus' => 'Failure',
+                                            'lastBuildTime' => '2009-05-29T10:16:19',
+                                            'activity' => 'Sleeping',
+                                            'webUrl' => 'http://localhost:8153/cruise/tab/stage/detail/Fatwire/19/test/11'
+                                          },
+                       'Sauron :: Integration-Tests :: run-integration-twist-scenarios' => {
+                                                                                           'lastBuildLabel' => '4680',
+                                                                                           'lastBuildStatus' => 'Success',
+                                                                                           'lastBuildTime' => '2009-06-02T10:45:02',
+                                                                                           'activity' => 'Sleeping',
+                                                                                           'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/Integration-Tests/1/run-integration-twist-scenarios'
+                                                                                         },
+                       'Fatwire :: test :: test' => {
+                                                    'lastBuildLabel' => '19 :: 11',
+                                                    'lastBuildStatus' => 'Failure',
+                                                    'lastBuildTime' => '2009-05-29T10:16:19',
+                                                    'activity' => 'Sleeping',
+                                                    'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Fatwire/19/test/11/test'
+                                                  },
+                       'Sauron :: promote-to-dev :: promote-database' => {
+                                                                         'lastBuildLabel' => '4680',
+                                                                         'lastBuildStatus' => 'Success',
+                                                                         'lastBuildTime' => '2009-06-02T10:45:40',
+                                                                         'activity' => 'Sleeping',
+                                                                         'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/promote-to-dev/1/promote-database'
+                                                                       },
+                       'URS :: build :: tests' => {
+                                                  'lastBuildLabel' => '20',
+                                                  'lastBuildStatus' => 'Success',
+                                                  'lastBuildTime' => '2009-05-29T13:32:12',
+                                                  'activity' => 'Sleeping',
+                                                  'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/URS/20/build/1/tests'
+                                                },
+                       'Sauron :: Integration-Tests :: run-integration-tests' => {
+                                                                                 'lastBuildLabel' => '4680',
+                                                                                 'lastBuildStatus' => 'Success',
+                                                                                 'lastBuildTime' => '2009-06-02T10:44:14',
+                                                                                 'activity' => 'Sleeping',
+                                                                                 'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/Integration-Tests/1/run-integration-tests'
+                                                                               },
+                       'URS :: build' => {
+                                         'lastBuildLabel' => '20',
+                                         'lastBuildStatus' => 'Success',
+                                         'lastBuildTime' => '2009-05-29T13:32:12',
+                                         'activity' => 'Sleeping',
+                                         'webUrl' => 'http://localhost:8153/cruise/tab/stage/detail/URS/20/build/1'
+                                       },
+                       'Sauron :: Integration-Tests' => {
+                                                        'lastBuildLabel' => '4680',
+                                                        'lastBuildStatus' => 'Success',
+                                                        'lastBuildTime' => '2009-06-02T10:45:02',
+                                                        'activity' => 'Sleeping',
+                                                        'webUrl' => 'http://localhost:8153/cruise/tab/stage/detail/Sauron/4680/Integration-Tests/1'
+                                                      },
+                       'Sauron :: build :: package' => {
+                                                       'lastBuildLabel' => '4680',
+                                                       'lastBuildStatus' => 'Success',
+                                                       'lastBuildTime' => '2009-06-02T10:33:31',
+                                                       'activity' => 'Sleeping',
+                                                       'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/build/1/package'
+                                                     },
+                       'Sauron :: build :: metrics' => {
+                                                       'lastBuildLabel' => '4680',
+                                                       'lastBuildStatus' => 'Success',
+                                                       'lastBuildTime' => '2009-06-02T10:35:58',
+                                                       'activity' => 'Sleeping',
+                                                       'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/build/1/metrics'
+                                                     },
+                       'Sauron :: build' => {
+                                            'lastBuildLabel' => '4680',
+                                            'lastBuildStatus' => 'Success',
+                                            'lastBuildTime' => '2009-06-02T10:35:58',
+                                            'activity' => 'Sleeping',
+                                            'webUrl' => 'http://localhost:8153/cruise/tab/stage/detail/Sauron/4680/build/1'
+                                          },
+                       'FBI :: Build :: test' => {
+                                                 'lastBuildLabel' => '70',
+                                                 'lastBuildStatus' => 'Success',
+                                                 'lastBuildTime' => '2009-06-01T13:47:18',
+                                                 'activity' => 'Sleeping',
+                                                 'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/FBI/70/Build/1/test'
+                                               },
+                       'Sauron :: Stub-Twist-Tests :: deploy-rpm-and-run-twist-scenarios-run1' => {
+                                                                                                  'lastBuildLabel' => '4680',
+                                                                                                  'lastBuildStatus' => 'Success',
+                                                                                                  'lastBuildTime' => '2009-06-02T10:42:32',
+                                                                                                  'activity' => 'Sleeping',
+                                                                                                  'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/Stub-Twist-Tests/1/deploy-rpm-and-run-twist-scenarios-run1'
+                                                                                                },
+                       'Fatwire :: test :: assetcreator' => {
+                                                            'lastBuildLabel' => '19 :: 11',
+                                                            'lastBuildStatus' => 'Success',
+                                                            'lastBuildTime' => '2009-05-29T10:14:50',
+                                                            'activity' => 'Sleeping',
+                                                            'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Fatwire/19/test/11/assetcreator'
+                                                          },
+                       'Sauron :: qastubbed' => {
+                                                'lastBuildLabel' => '4680',
+                                                'lastBuildStatus' => 'Success',
+                                                'lastBuildTime' => '2009-06-02T10:46:44',
+                                                'activity' => 'Sleeping',
+                                                'webUrl' => 'http://localhost:8153/cruise/tab/stage/detail/Sauron/4680/qastubbed/1'
+                                              },
+                       'Sauron :: qastubbed :: deploy.to.devapp019' => {
+                                                                       'lastBuildLabel' => '4680',
+                                                                       'lastBuildStatus' => 'Success',
+                                                                       'lastBuildTime' => '2009-06-02T10:46:44',
+                                                                       'activity' => 'Sleeping',
+                                                                       'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/qastubbed/1/deploy.to.devapp019'
+                                                                     },
+                       'Sauron :: Stub-Twist-Tests' => {
+                                                       'lastBuildLabel' => '4680',
+                                                       'lastBuildStatus' => 'Success',
+                                                       'lastBuildTime' => '2009-06-02T10:43:03',
+                                                       'activity' => 'Sleeping',
+                                                       'webUrl' => 'http://localhost:8153/cruise/tab/stage/detail/Sauron/4680/Stub-Twist-Tests/1'
+                                                     },
+                       'URS :: build :: package' => {
+                                                    'lastBuildLabel' => '20',
+                                                    'lastBuildStatus' => 'Success',
+                                                    'lastBuildTime' => '2009-05-29T13:27:57',
+                                                    'activity' => 'Sleeping',
+                                                    'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/URS/20/build/1/package'
+                                                  },
+                       'Sauron :: Stub-Twist-Tests :: deploy-rpm-and-run-twist-scenarios-run3' => {
+                                                                                                  'lastBuildLabel' => '4680',
+                                                                                                  'lastBuildStatus' => 'Success',
+                                                                                                  'lastBuildTime' => '2009-06-02T10:43:03',
+                                                                                                  'activity' => 'Sleeping',
+                                                                                                  'webUrl' => 'http://localhost:8153/cruise/tab/build/detail/Sauron/4680/Stub-Twist-Tests/1/deploy-rpm-and-run-twist-scenarios-run3'
+                                                                                                }
+                     }
+        };

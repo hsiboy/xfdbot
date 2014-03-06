@@ -1,0 +1,194 @@
+#!/usr/bin/perl
+
+#
+# load required modules
+#
+use diagnostics;
+use warnings;
+use strict;
+use POSIX qw(setsid);
+use DBI;
+use XML::Simple;
+use LWP::UserAgent;
+use HTTP::Status;
+use DateTime::Format::Strptime;
+use Data::Dumper;
+
+#
+# Signals to Trap and Handle
+#
+$SIG{'INT' } = 'interrupt';
+$SIG{'HUP' } = 'interrupt';
+$SIG{'ABRT'} = 'interrupt';
+$SIG{'QUIT'} = 'interrupt';
+$SIG{'TRAP'} = 'interrupt';
+$SIG{'STOP'} = 'interrupt';
+$SIG{'TERM'} = 'interrupt';
+
+
+#
+# fetch_json_page("http://stuart-t:fy9nhf@cruise.dev.tradermedia.net:8153/cruise/stageStatus.json?pipelineName=Sauron&label=4595&counter=1&stageName=build");
+#
+
+
+#
+# connect to (or create) database
+#
+my $dbh = DBI->connect("dbi:SQLite:adf.db", "", "", {RaiseError => 1, AutoCommit => 1});
+
+#
+# Create table if not exists
+#
+$dbh->do("CREATE TABLE If NOT EXISTS test (id INTEGER PRIMARY KEY, f TEXT, l TEXT)");
+
+# Globals
+my $LOG 	  = "/var/log/xfd.log";
+our ($timestamp, $stamp, $dt, $xml, $ie, $ua, $url, $response, $content, $msg, $lastBuildTime, $lastBuildLabel, $lastActivity) = "";
+our ($BrokenBuildMessage, $FixedBuildMessage, $StillFailingBuildMessage, $StillSuccessfulBuildMessage, $thisActivity, $thisBuildTime, $thisBuildStatus, $thisBuildLabel, $webUrl) = "";
+our $parser = DateTime::Format::Strptime->new( pattern => '%Y-%m-%dT%H:%M:%S' );
+                                                         # 2009-01-16T14:48:38
+
+#
+# redirect STDERR and STDOUT
+#
+our $access_log = "access.log";
+our $error_log  = "error.log";
+
+# flush the buffer
+$| = 1;
+
+# daemonize the program
+&daemonize;
+
+print STDOUT "Started: " . scalar localtime(time) . "\n";
+
+# our infinite loop
+INFINITE: while(1) {
+
+    # wait for 30 seconds
+    sleep(30);
+
+   $timestamp = scalar localtime(time);
+
+
+
+$xml = new XML::Simple;
+$ie="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
+$ua = LWP::UserAgent->new;
+$ua->agent($ie);
+$ua->timeout(5);
+$ua->proxy(['http'], 'http://proxy.tradermedia.co.uk:8080/');
+$url = 'http://stuart-t:fy9nhf@cruise.dev.tradermedia.net/cruise/cctray.xml';
+$response = $ua->get ($url);
+
+if ($response->is_success)
+{
+	my $xmlfile = $response->content;
+	#print "i got $xmlfile from the server\n";
+
+#
+# read XML file
+#
+my $projects = $xml->XMLin($xmlfile);
+
+
+$BrokenBuildMessage          = "Broken build, Recent checkins have broken the build";
+$FixedBuildMessage           = "Fixed build, Recent checkins have fixed the build";
+$StillFailingBuildMessage    = "Build still failing, The build is still broken...";
+$StillSuccessfulBuildMessage = "Build successful, Yet another successful build!";
+$thisActivity                = $projects->{'Project'}->{'Sauron :: build'}->{'activity'};
+$thisBuildTime               = $projects->{'Project'}->{'Sauron :: build'}->{'lastBuildTime'};
+$thisBuildStatus             = $projects->{'Project'}->{'Sauron :: build'}->{'lastBuildStatus'};
+$thisBuildLabel              = $projects->{'Project'}->{'Sauron :: build'}->{'lastBuildLabel'};
+$webUrl                      = $projects->{'Project'}->{'Sauron :: build'}->{'webUrl'};
+
+# if the xml contains the string cruise, expand it...
+$webUrl =~ s/cruise/cruise.dev.tradermedia.net/g;
+
+
+if (($thisBuildLabel eq $lastBuildLabel) && ($thisBuildTime eq $lastBuildTime)) {
+	# we dont need to do any thing.
+	print STDERR "$timestamp - nothing happening ($thisBuildLabel:$lastBuildLabel) - need to run again\n";
+	redo INFINITE;
+}
+
+if (($lastActivity eq 'Building') && ($lastActivity eq $thisActivity)) {
+# check back in 10
+	$lastActivity = $thisActivity;
+	print STDERR "$timestamp - Still building ($lastActivity:$thisActivity)- need to check again\n";
+	redo INFINITE;
+}
+
+
+
+$msg = "I dont know what state the build is in, cruise returned $thisBuildStatus for the last build status?\nCurrently $lastActivity";
+
+my $bt = $parser->parse_datetime( $thisBuildTime );
+
+
+if ($thisBuildStatus eq "Success" && $lastActivity eq "Building") {
+	$msg = "Build $lastBuildLabel was sucessfully built @ " . $bt->hms(':') . "\nThe Build is Currently $lastActivity";
+
+}
+elsif ($thisBuildStatus eq "Success" && $thisActivity eq "Sleeping") {
+
+$msg = "Build " . $lastBuildLabel . " was sucessfully built @ " . $bt->hms(':') . "the Build is Currently " . $lastActivity;
+
+}
+elsif ($thisBuildStatus eq "Failure") {
+
+$msg = "BORK BORK BORK - Build  " . $lastBuildLabel . " started building @ " . $bt->hms(':') . "The Build is Currently " . $lastActivity;
+}
+
+}
+else {
+	$msg = $dt->ymd . ' ' . $dt->hms .': ' . $response->status_line;
+} # end if success
+
+	print STDOUT "$msg\n";
+
+ 	$lastActivity   = $thisActivity;
+  $lastBuildTime  = $thisBuildTime;
+  $lastBuildLabel = $thisBuildLabel;
+
+}
+
+sub daemonize {
+    #chdir '/'                 or die "Can't chdir to /: $!";
+    open STDIN, '/dev/null'   or die "Can't read /dev/null: $!";
+    #open STDOUT, '>>/dev/null' or die "Can't write to /dev/null: $!";
+    #open STDERR, '>>/dev/null' or die "Can't write to /dev/null: $!";
+    open STDOUT, ">>$access_log" or die "Can't write to $access_log: $!";
+    open STDERR, ">>$error_log" or die "Can't write to $error_log: $!";
+
+    defined(my $pid = fork)   or die "Can't fork: $!";
+    exit if $pid;
+    setsid                    or die "Can't start a new session: $!";
+    umask 0;
+}
+
+#
+# Interrupt: Simple interrupt handler
+#
+sub interrupt {
+	appendfile($LOG, "$timestamp: caught @_ exiting");
+	print STDOUT "$timestamp caught @_ exiting\n";
+	die;
+}
+
+#
+# Append file: Append a string to a file.
+#
+sub appendfile {
+	my ($fp, $msg) = @_;
+
+	if (open(FILE, ">>$fp")) {
+		print FILE ("$msg\n");
+		close FILE;
+	}
+}
+
+
+
+ 
+

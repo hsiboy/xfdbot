@@ -1,0 +1,21 @@
+<alphasign>
+  <text label="A" mode="rollUp" trailingMode="rollUp">
+    <noHold/><speed5/>
+    <callDots label="A"/>
+    <callDots label="B"/>
+    <callDots label="C"/>
+    <callDots label="D"/>
+    <callDots label="E"/>
+    <callDots label="F"/>
+  </text>
+  <text label="B" mode="rollDown" trailingMode="rollDown">
+    <noHold/><speed5/>
+    <callDots label="F"/>
+    <callDots label="E"/>
+    <callDots label="D"/>
+    <callDots label="C"/>
+    <callDots label="B"/>
+    <callDots label="A"/>
+  </text>
+  <sequence labels="AB"/>
+</alphasign>
